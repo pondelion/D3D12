@@ -17,15 +17,15 @@ int WINAPI WinMain(HINSTANCE hInstance,
   // Window initialization.
   using namespace window;
   HWND hwnd_main, hwnd_sub;
-  const WindowManager& wm = static_cast<WindowManager&>(
+  WindowManager& wm = static_cast<WindowManager&>(
     sp.GetCoreService(CoreServiceType::WindowManagerService)
   );
-  hwnd_main = wm.CreateMainWindow();
-  hwnd_sub = wm.CreateSubWindow();
+  hwnd_main = wm.CreateMainWindow(hInstance, nCmdShow);
+  hwnd_sub = wm.CreateSubWindow(hwnd_main);
 
   // D3D Setup
   using namespace d3d;
-  const D3DManager& d3dm = static_cast<D3DManager&>(
+  D3DManager& d3dm = static_cast<D3DManager&>(
     sp.GetCoreService(CoreServiceType::D3DManagerService)
   );
   d3dm.Initialize(hwnd_sub);

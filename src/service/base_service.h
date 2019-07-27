@@ -5,7 +5,17 @@
 namespace service {
 
 class Service {
+ protected:
+  Service() = default;
 
+ public:
+  Service(Service const &) = delete;
+  Service& operator=(Service const &) = delete;
+
+  static Service& Instance() {
+    static Service instance_;
+    return instance_;
+  }
 };
 
 }
